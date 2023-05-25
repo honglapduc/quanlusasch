@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>My Book List</title>
+  <th:block th:replace="layout:: link-css"></th:block>
+</head>
+<body>
+<th:block th:replace="layout:: header"></th:block>
+<div container>
+  <h1 >addbook</h1>
+  <form th:action="@{/books/add}" th:object="${book}" method="post">
+
+    <div class="col-6 mb-3">
+      <label class="form-label" >Title</label>
+      <input  class="form-control" type="text" th:field="*{title}" id="Title">
+      <span   class="text-danger" th:if="${#fields.hasErrors('title')}" th:errors="*{title}"></span>
+    </div>
+    <div class="col-6 mb-3">
+      <label class="form-label" >Author</label>
+      <input  class="form-control" type="text" th:field="*{author}" id="author">
+    </div>
+    <div class="col-6 mb-3">
+      <label class="form-label" >Price</label>
+      <input  class="form-control" type="text" th:field="*{price}" id="price">
+      <span   class="text-danger" th:if="${#fields.hasErrors('price')}" th:errors="*{price}"></span>
+    </div>
+    <div class="col-6 mb-3">
+      <label class="form-label" >Category</label>
+      <select class="form-control" id="category" name="category.id">
+        <option value="--select">
+
+        </option>
+        <option th:each="category : ${categories}" th:value="${category.id}"
+                th:text="${category.name}">
+        </option>
+      </select>
+      <span   class="text-danger" th:if="${#fields.hasErrors('category')}" th:errors="*{category}"></span>
+    </div>
+    <input type="submit" class="btn btn-primary" th:value="save">
+  </form>
+  <br>
+  <a th:href="@{/books}">BackToList</a>
+</div>
+<th:block ></th:block>
+</body>
+</html>

@@ -38,9 +38,10 @@ public class BookController {
     public String addbook(@Valid @ModelAttribute("book") Book book, BindingResult bindingResult,Model model){
 
         if(bindingResult.hasErrors()){
-            model.addAttribute("category",categoryService.getAllCategories());
+            model.addAttribute("categories",categoryService.getAllCategories());
             return "book/add";
         }
+
         bookService.addBook(book);
         return "redirect:/books";
     }
@@ -90,5 +91,6 @@ public class BookController {
 
         return "redirect:/books";
     }
+
 
 }

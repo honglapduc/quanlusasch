@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>login</title>
+  <th:block th:replace="layout:: link-css"></th:block>
+</head>
+<body>
+<th:block th:replace="layout:: header"></th:block>
+<div container>
+  <div class="row justify-content-center">
+    <div class="col-lg-6 col-md-8">
+  <form th:action="@{/login}" method="post">
+    <fieldset>
+      <legend>Login</legend>
+      <div th:if="${param.error}" class="alert alert-danger">
+        Invalid username and password
+      </div>
+      <div th:if="${param.logout}" class="alert alert-danger">
+        you have been logged out
+      </div>
+
+    <div class="mb-3">
+      <label for="username" class="form-label"  >Username:</label>
+      <input type="text" required  class="form-control"   id="username" name="username">
+
+    </div>
+      <div class="mb-3">
+        <label for="password" class="form-label"  >Password:</label>
+        <input type="password" required  class="form-control"   id="password" name="password">
+
+      </div>
+      <div class="mb-3">
+        <input type="checkbox"    id="remember-me" name="remember-me">
+        <label for="remember-me" class="form-label"  >Remember me:</label>
+
+
+      </div>
+      <div class="d-gird gap-2 form-action">
+        <button type="submit" class="btn btn-primary">Login</button>
+        <a class="text-primary text-center" href="/register">Don't have account. Sign up?</a>
+
+      </div>
+
+
+
+    </fieldset>
+  </form>
+    </div>
+  </div>
+</div>
+<th:block th:replace = "~{layout :: footer}"></th:block>
+</body>
+</html>
